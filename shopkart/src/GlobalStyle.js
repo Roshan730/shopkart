@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 
 
 html {
-  font-size: 55.5%;
+  font-size: 40.5%;
   overflow-x: hidden;
 }
 

@@ -151,7 +151,7 @@ const FilterSection = () => {
 };
 
 const Wrapper = styled.section`
-  padding: 5rem 0;
+  padding: 7rem 0;
   display: flex;
   flex-direction: column;
   gap: 3rem;

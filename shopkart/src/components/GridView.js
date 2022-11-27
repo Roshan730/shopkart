@@ -1,165 +1,108 @@
-// import React from "react";
-// import styled from "styled-components";
-// import { NavLink } from "react-router-dom";
-// import { Button } from "../styles/Button";
-// import { FaDiscord, FaInstagram, FaYoutube } from "react-icons/fa";
+import React from "react";
+import styled from "styled-components";
+import Product from "./Product";
 
-// const Footer = () => {
-//   return (
-//     <>
-//       <Wrapper>
-//         <section className="contact-short">
-//           <div className="grid grid-two-column">
-//             <div>
-//               <h3>Ready to get started?</h3>
-//               <h3>Talk to us today</h3>
-//             </div>
+const GridView = ({ products }) => {
+  return (
+    <Wrapper className="section">
+      <div className="container grid grid-three-column">
+        {products.map((curElem) => {
+          return <Product key={curElem.id} {...curElem} />;
+        })}
+      </div>
+    </Wrapper>
+  );
+};
 
-//             <div>
-//               <Button className="btn hireme-btn">
-//                 <NavLink to="/"> Get Started </NavLink>
-//               </Button>
-//             </div>
-//           </div>
-//         </section>
-//         {/* footer section */}
+const Wrapper = styled.section`
+  padding: 9rem 0;
 
-//         <footer>
-//           <div className="container grid grid-four-column">
-//             <div className="footer-about">
-//               <h3>Thapa Technical</h3>
-//               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-//             </div>
-//             <div className="footer-subscribe">
-//               <h3>Subscribe to get important updates</h3>
-//               <form action="#">
-//                 <input type="email" name="email" placeholder="YOUR E-MAIL" />
+  .container {
+    max-width: 120rem;
+  }
 
-//                 <input type="submit" value="subscribe" />
-//               </form>
-//             </div>
-//             <div className="footer-social">
-//               <h3>Follow Us</h3>
-//               <div className="footer-social--icons">
-//                 <div>
-//                   <FaDiscord className="icons" />
-//                 </div>
-//                 <div>
-//                   <FaInstagram className="icons" />
-//                 </div>
-//                 <div>
-//                   <a
-//                     href="https://www.youtube.com/channel/UCwfaAHy4zQUb2APNOGXUCCA"
-//                     target="_blank"
-//                   >
-//                     <FaYoutube className="icons" />
-//                   </a>
-//                 </div>
-//               </div>
-//             </div>
-//             <div className="footer-contact">
-//               <h3>Call Us</h3>
-//               <h3>+91 12345678978</h3>
-//             </div>
-//           </div>
+  .grid {
+    gap: 3.2rem;
+  }
 
-//           <div className="footer-bottom--section">
-//             <hr />
-//             <div className="container grid grid-two-column ">
-//               <p>
-//                 @{new Date().getFullYear()} ThapaTechnical. All Rights Reserved
-//               </p>
-//               <div>
-//                 <p>PRIVACY POLICY</p>
-//                 <p>TERMS & CONDITIONS</p>
-//               </div>
-//             </div>
-//           </div>
-//         </footer>
-//       </Wrapper>
-//     </>
-//   );
-// };
+  figure {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      transition: all 0.2s linear;
+      cursor: pointer;
+    }
+    &:hover::after {
+      width: 100%;
+    }
+    &:hover img {
+      transform: scale(1.2);
+    }
+    img {
+      max-width: 90%;
+      margin-top: 1.5rem;
+      height: 20rem;
+      transition: all 0.2s linear;
+    }
+  }
 
-// const Wrapper = styled.section`
-//   .iSIFGq {
-//     margin: 0;
-//   }
+  .card {
+    background-color: ${({ theme }) => theme.colors.bg};
+    border-radius: 1rem;
 
-//   .contact-short {
-//     max-width: 60vw;
-//     margin: auto;
-//     padding: 5rem 10rem;
-//     background-color: ${({ theme }) => theme.colors.bg};
-//     border-radius: 1rem;
-//     box-shadow: ${({ theme }) => theme.colors.shadowSupport};
-//     transform: translateY(50%);
+    .card-data {
+      padding: 0 1rem;
+    }
 
-//     .grid div:last-child {
-//       justify-self: end;
-//       align-self: center;
-//     }
-//   }
+    .card-data-flex {
+      margin: 2rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-//   footer {
-//     padding: 14rem 0 9rem 0;
-//     background-color: ${({ theme }) => theme.colors.footer_bg};
-//     h3 {
-//       color: ${({ theme }) => theme.colors.hr};
-//       margin-bottom: 2.4rem;
-//     }
-//     p {
-//       color: ${({ theme }) => theme.colors.white};
-//     }
-//     .footer-social--icons {
-//       display: flex;
-//       gap: 2rem;
+    .card-data--price {
+      color: ${({ theme }) => theme.colors.helper};
+    }
 
-//       div {
-//         padding: 1rem;
-//         border-radius: 50%;
-//         border: 2px solid ${({ theme }) => theme.colors.white};
+    h3 {
+      color: ${({ theme }) => theme.colors.text};
+      text-transform: capitalize;
+    }
 
-//         .icons {
-//           color: ${({ theme }) => theme.colors.white};
-//           font-size: 2.4rem;
-//           position: relative;
-//           cursor: pointer;
-//         }
-//       }
-//     }
-//   }
+    .btn {
+      margin: 2rem auto;
+      background-color: rgb(0 0 0 / 0%);
+      border: 0.1rem solid rgb(98 84 243);
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-//   .footer-bottom--section {
-//     padding-top: 9rem;
+      &:hover {
+        background-color: rgb(98 84 243);
+      }
 
-//     hr {
-//       margin-bottom: 2rem;
-//       color: ${({ theme }) => theme.colors.hr};
-//       height: 0.1px;
-//     }
-//   }
+      &:hover a {
+        color: #fff;
+      }
+      a {
+        color: rgb(98 84 243);
+        font-size: 1.4rem;
+      }
+    }
+  }
+`;
 
-//   @media (max-width: ${({ theme }) => theme.media.mobile}) {
-//     .contact-short {
-//       max-width: 80vw;
-//       margin: 4.8rem auto;
-//       transform: translateY(0%);
-//       text-align: center;
-
-//       .grid div:last-child {
-//         justify-self: center;
-//       }
-//     }
-
-//     footer {
-//       padding: 9rem 0 9rem 0;
-//     }
-
-//     .footer-bottom--section {
-//       padding-top: 4.8rem;
-//     }
-//   }
-// `;
-
-// export default Footer;
+export default GridView;
