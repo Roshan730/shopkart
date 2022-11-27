@@ -94,13 +94,3 @@ const Wrapper = styled.section`
 `;
 
 export default Sort;
-
-//*********************** */
-
-// import React from "react";
-
-// const Sort = () => {
-//   return <div>Sort</div>;
-// };
-
-// export default Sort;
