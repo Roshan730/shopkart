@@ -9,6 +9,7 @@ const ListView = ({ products }) => {
       <div className="container grid">
         {products.map((curElem, index) => {
           const { id, name, image, price, description } = curElem;
+          console.log(price);
           return (
             <div className="card grid grid-two-column" key={index}>
               <figure>

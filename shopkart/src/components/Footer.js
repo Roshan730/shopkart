@@ -42,14 +42,14 @@ const Footer = () => {
               <h3>Follow Us</h3>
               <div className="footer-social--icons">
                 <div>
-                  <a href="https://github.com/Roshan730" target="_blank">
+                  <a href="https://github.com/Roshan730" target="blank">
                     <FaGithub className="icons" />
                   </a>
                 </div>
                 <div>
                   <a
                     href="https://www.instagram.com/_phoenix._exe/"
-                    target="_blank"
+                    target="blank"
                   >
                     <FaInstagram className="icons" />
                   </a>

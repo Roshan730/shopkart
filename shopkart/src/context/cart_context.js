@@ -1,19 +1,18 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
+import { useReducer, createContext, useContext, useEffect } from "react";
 import reducer from "../reducer/cartReducer";
 
 const CartContext = createContext();
 
 const getLocalCartData = () => {
-  let localCartData = localStorage.getItem("thapaCart");
-  if (localCartData === []) {
+  let newCartData = localStorage.getItem("cart");
+  if (newCartData === []) {
     return [];
   } else {
-    return JSON.parse(localCartData);
+    return JSON.parse(newCartData);
   }
 };
 
 const initialState = {
-  // cart: [],
   cart: getLocalCartData(),
   total_item: "",
   total_price: "",
@@ -23,39 +22,35 @@ const initialState = {
 const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  // Add to cart
   const addToCart = (id, color, amount, product) => {
     dispatch({ type: "ADD_TO_CART", payload: { id, color, amount, product } });
   };
 
-  // increment and decrement the product
-
+  //deccrement
   const setDecrease = (id) => {
     dispatch({ type: "SET_DECREMENT", payload: id });
   };
 
+  //increment
   const setIncrement = (id) => {
     dispatch({ type: "SET_INCREMENT", payload: id });
   };
 
-  // to remove the individual item from cart
+  // remove from cart
   const removeItem = (id) => {
     dispatch({ type: "REMOVE_ITEM", payload: id });
   };
 
-  // to clear the cart
+  //cart clear
   const clearCart = () => {
     dispatch({ type: "CLEAR_CART" });
   };
 
-  // to add the data in localStorage
-  // get vs set
-
+  //localStorages
   useEffect(() => {
-    // dispatch({ type: "CART_TOTAL_ITEM" });
-    // dispatch({ type: "CART_TOTAL_PRICE" });
     dispatch({ type: "CART_ITEM_PRICE_TOTAL" });
-
-    localStorage.setItem("thapaCart", JSON.stringify(state.cart));
+    localStorage.setItem("cart", JSON.stringify(state.cart));
   }, [state.cart]);
 
   return (
@@ -65,8 +60,8 @@ const CartProvider = ({ children }) => {
         addToCart,
         removeItem,
         clearCart,
-        setDecrease,
         setIncrement,
+        setDecrease,
       }}
     >
       {children}
